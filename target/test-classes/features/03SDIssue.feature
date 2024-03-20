@@ -8,10 +8,15 @@ Feature: CRUD SD Issue
     And User go to SD Issues page
     Then User see list SD Issue
 
-    @issue @add
-    Scenario: User add new SD Issue
+    @issue @add @positive
+    Scenario: User success add new SD Issue
     Given User on SD Issues Page
-    And User click button Add SD Issue
     And User input issue
     And User click button Save
     Then User success add SD Issue
+
+    @issue @add @negative
+    Scenario: User failed add new SD Issue - Empty
+    Given User on SD Issues Page
+    And User click button Save
+    Then User get alert require field

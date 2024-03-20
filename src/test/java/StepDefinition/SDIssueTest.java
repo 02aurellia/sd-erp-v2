@@ -1,5 +1,7 @@
 package StepDefinition;
 
+import org.openqa.selenium.By;
+
 import PageFactory.LoginPage;
 import PageFactory.SDIssuePage;
 import config.env;
@@ -13,6 +15,7 @@ public class SDIssueTest extends env {
 
     @Given("User in homepage")
     public void user_in_homepage() throws InterruptedException {
+        driver.get(SDErpLink); //endpoint url sd erp
         LoginPage login = new LoginPage(driver);
         login.verifyLoginPage();
         login.inputCredentials("aurel@falahtech.co.id", "Falah0918");
@@ -37,36 +40,35 @@ public class SDIssueTest extends env {
 
     @Given("User on SD Issues Page")
     public void user_on_sd_issues_page() throws InterruptedException {
+        driver.get(SDErpLinkIssue); //endpoint url sd issue
+        driver.findElement(By.xpath("(//a[contains(text(),'Login')])[2]")).click();
         LoginPage login = new LoginPage(driver);
         login.verifyLoginPage();
         login.inputCredentials("aurel@falahtech.co.id", "Falah0918");
         login.clickBtnLogin();
-        login.verifyDashboard();
-        SDIssuePage issue = new SDIssuePage(driver);
-        issue.clickProjects();
-        issue.clickProjects();
-        issue.clickIssue();
-        issue.verifyIssuePage();
     }
-    @And("User click button Add SD Issue")
-    public void user_click_button_add_sd_issue() {
-        SDIssuePage issue = new SDIssuePage(driver);
-        issue.addIssue();
-        issue.verifyIssuePage();
-    }
+
     @And("User input issue")
-    public void user_input_issue() {
+    public void user_input_issue() throws InterruptedException {
         SDIssuePage issue = new SDIssuePage(driver);
-        issue.inputIssue("HIGH", "Testing Issue", "TESTING TASK", "Ini deskripsi buat test sd issue yaaa");
+        issue.inputIssue("Testing Issue ", "Ini deskripsi buat test sd issue yaaa");
     }
+
     @And("User click button Save")
     public void user_click_button_save() {
         SDIssuePage issue = new SDIssuePage(driver);
         issue.clickBtnSave();
     }
+
     @Then("User success add SD Issue")
     public void user_success_add_sd_issue() {
         SDIssuePage issue = new SDIssuePage(driver);
-        issue.verifyIssuePage();
+        issue.verifySuccess();
+    }
+
+    @Then("User get alert require field")
+    public void user_get_alert_require_field() {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.getAlertRequired();
     }
 }

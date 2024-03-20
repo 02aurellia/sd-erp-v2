@@ -16,7 +16,7 @@ public class TimesheetTest extends env {
 
     @Given("User on homepage")
     public void user_on_homepage() throws InterruptedException {
-        driver.get(SDErpLink);
+        driver.get(SDErpLink); //endpoint url sd erp
         LoginPage login = new LoginPage(driver);
         login.verifyLoginPage();
         login.inputCredentials("aurel@falahtech.co.id", "Falah0918");
@@ -26,7 +26,7 @@ public class TimesheetTest extends env {
 
     @Given("User on timesheet page")
     public void user_on_timesheet_page() throws InterruptedException {
-        driver.get(SDErpLinkTS);
+        driver.get(SDErpLinkTS); //endpoint url timesheet
         driver.findElement(By.xpath("(//a[contains(text(),'Login')])[2]")).click();
         LoginPage login = new LoginPage(driver);
         login.verifyLoginPage();

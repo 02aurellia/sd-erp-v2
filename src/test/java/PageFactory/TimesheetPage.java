@@ -2,7 +2,6 @@ package PageFactory;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -277,5 +276,6 @@ public class TimesheetPage {
 
     public void clickBtnSave(){
         btnSave.click();
+        System.out.println("Berhasil edit data");
     }
 }

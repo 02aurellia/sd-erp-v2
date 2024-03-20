@@ -32,11 +32,11 @@ public class Hooks extends env {
         }
     }
 
-    // @After
-    // public void browserTeardown() throws InterruptedException{
-    //     Thread.sleep(5000);
-    //     driver.quit();
-    // }
+    @After
+    public void browserTeardown() throws InterruptedException{
+        Thread.sleep(5000);
+        driver.quit();
+    }
 
     // @AfterAll
     // public static void finish(){

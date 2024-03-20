@@ -13,6 +13,7 @@ public class LoginTest extends env{
 
     @Given("User on login Page")
     public void user_on_login_page() throws InterruptedException {
+        driver.get(SDErpLink);
         LoginPage login = new LoginPage(driver);
         login.verifyLoginPage();
     }
