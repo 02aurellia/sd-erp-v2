@@ -71,4 +71,20 @@ public class SDIssueTest extends env {
         SDIssuePage issue = new SDIssuePage(driver);
         issue.getAlertRequired();
     }
+    
+    @Then("User choose Issue")
+    public void user_choose_issue() throws InterruptedException {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.chooseIssue();
+    }
+    @Then("User edit Issue")
+    public void user_edit_issue() throws InterruptedException {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.editDesc(". Ini deskripsi edit edit edit");
+    }
+    @Then("User get alert success")
+    public void user_get_alert_success() throws InterruptedException {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.verifSuccess();
+    }
 }

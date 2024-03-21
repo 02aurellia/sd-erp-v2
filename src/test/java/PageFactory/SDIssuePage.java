@@ -3,6 +3,7 @@ package PageFactory;
 import java.util.List;
 import java.util.Random;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -52,6 +53,15 @@ public class SDIssuePage {
 
     @FindBy(xpath = "//ul[@id='awesomplete_list_15']//li")
     List<WebElement> listPriority;
+
+    @FindBy(xpath = "//a[@title='Testing Issue 5844']")
+    WebElement issue;
+
+    @FindBy(xpath = "//div[@class='ql-editor']")
+    WebElement editDesc;
+
+    @FindBy(xpath = "//div[contains(text(),'Saved')]")
+    WebElement MsgSuccess;
 
     public SDIssuePage(WebDriver driver) {
 		this.driver = driver;
@@ -143,6 +153,23 @@ public class SDIssuePage {
 
     public void getAlertRequired(){
         alertRequired.isDisplayed();
+    }
+
+    public void chooseIssue() throws InterruptedException{
+        issue.click();
+        Thread.sleep(1000);
+        String ActualTitle = driver.getTitle();
+        Assert.assertTrue(ActualTitle.contains("Testing Issue 5844"));
+    }
+
+    public void editDesc(String desc) throws InterruptedException{
+        editDesc.sendKeys(desc);
+        Thread.sleep(1000);
+    }
+
+    public void verifSuccess() throws InterruptedException{
+        Thread.sleep(2000);
+        MsgSuccess.isDisplayed();
     }
 
 }

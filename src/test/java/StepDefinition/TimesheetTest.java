@@ -83,15 +83,50 @@ public class TimesheetTest extends env {
     }
 
     @And("User click button edit timesheet")
-    public void user_click_button_edit_timesheet() {
+    public void user_click_button_edit_timesheet() throws InterruptedException {
         TimesheetPage timesheet = new TimesheetPage(driver);
         timesheet.clickBtnEdit();
         timesheet.editValue();
+        Thread.sleep(2000);
     }
 
     @Then("User click button save")
     public void user_click_button_save() {
         TimesheetPage timesheet = new TimesheetPage(driver);
         timesheet.clickBtnSave();
+    }
+
+    @Then("User click button delete")
+    public void user_click_button_delete() throws InterruptedException {
+        TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.clickBtnDelete();
+    }
+    @Then("User click button Yes")
+    public void user_click_button_yes() {
+        TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.confirmYes();
+    }
+    @Then("Timesheet success get delete")
+    public void timesheet_success_get_delete() throws InterruptedException {
+        LoginPage login = new LoginPage(driver);
+        login.verifyDashboard();
+    }
+
+    @Then("User click resume timer")
+    public void user_click_resume_timer() {
+        TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.clickBtnTimer();
+    }
+    @Then("User click button complete")
+    public void user_click_button_complete() {
+        TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.clickBtnComplete();
+    }
+
+    @Then("User click button Submit")
+    public void user_click_button_submit() throws InterruptedException {
+        TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.clickBtnSubmit();
+        timesheet.successSubmit();
     }
 }

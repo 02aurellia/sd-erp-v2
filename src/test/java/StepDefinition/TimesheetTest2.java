@@ -1,10 +1,6 @@
 package StepDefinition;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import PageFactory.LoginPage;
@@ -38,7 +34,7 @@ public class TimesheetTest2 extends env {
         timesheet.inputTaskTest();
         timesheet.inputSubTaskTest();
         timesheet.inputMinutes();
-
+        
         // //Select Project
         // Thread.sleep(2000);
         // String OptionToSelect="General Work";

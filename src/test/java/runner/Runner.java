@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "StepDefinition",
-        tags = "@login" //use and,or to more spesific tags
+        tags = "@timesheet" //use and,or to more spesific tags
         // plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 )
 

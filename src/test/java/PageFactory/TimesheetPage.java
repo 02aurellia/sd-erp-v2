@@ -80,9 +80,34 @@ public class TimesheetPage {
     @FindBy(xpath = "//div[@class='ce-block col-xs-12 col-sm-5']//div[@class='widget-body']//div[1]//div[1]//div[1]")
     WebElement timesheet;
 
-    @FindBy(xpath = "//button[@data-label='Save']")
+    @FindBy(xpath = "//*[@id='page-SD Timesheets']/div[1]/div/div/div[2]/div[3]/button[2]")
     WebElement btnSave;
 
+    @FindBy(xpath = "//div[@class='menu-btn-group']")
+    WebElement btnDDMenu;
+
+    @FindBy(xpath = "//li[8]//a[1]")
+    WebElement btnDelete;
+
+    @FindBy(xpath = "//div[@class='modal fade show']//button[@type='button'][normalize-space()='Yes']")
+    WebElement btnConfirmYes;
+
+    @FindBy(xpath = "//div[@class='modal fade show']//button[@type='button'][normalize-space()='No']")
+    WebElement btnConfirmNo;
+
+    @FindBy(xpath = "//button[normalize-space()='Resume Timer']")
+    WebElement btnTimer;
+
+    @FindBy(xpath = "//div[@class='modal fade show']//div[@class='modal-dialog']//div[@class='modal-content']//div[@class='modal-body ui-front']//div//button[@class='btn btn-primary btn-complete'][normalize-space()='Complete']")
+    WebElement btnComplete;
+
+    @FindBy(xpath = "//button[@data-label='Submit']")
+    WebElement btnSubmit;
+
+    @FindBy(xpath = "//span[@class='indicator-pill whitespace-nowrap blue']")
+    WebElement verifySubmit;
+
+    
     public TimesheetPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(new AjaxElementLocatorFactory(driver,30),this);
@@ -268,14 +293,49 @@ public class TimesheetPage {
         btnEdit.click();
     }
 
-    public void editValue(){
+    public void editValue() throws InterruptedException{
         editMinutes.clear();
         editMinutes.sendKeys("123");
+        Thread.sleep(1000);
         btnCloseEdit.click();
     }
 
     public void clickBtnSave(){
         btnSave.click();
         System.out.println("Berhasil edit data");
+    }
+
+    public void clickBtnDelete() throws InterruptedException{
+        btnDDMenu.click();
+        Thread.sleep(1000);
+        btnDelete.click();
+        Thread.sleep(2000);
+    }
+
+    public void confirmYes(){
+        btnConfirmYes.click();
+    }
+
+    public void confirmNo(){
+        btnConfirmNo.click();
+    }
+
+    public void clickBtnTimer(){
+        btnTimer.click();
+    }
+
+    public void clickBtnComplete(){
+        btnComplete.click();
+    }
+
+    public void clickBtnSubmit() throws InterruptedException{
+        btnSubmit.click();
+        Thread.sleep(1000);
+        btnConfirmYes.click();
+        Thread.sleep(1000);
+    }
+
+    public void successSubmit(){
+        verifySubmit.isDisplayed();
     }
 }

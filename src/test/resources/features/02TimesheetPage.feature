@@ -27,3 +27,24 @@ Feature: CRUD Timesheet
     Then User choose timesheet
     And User click button edit timesheet
     Then User click button save
+
+    @stop @timesheet
+    Scenario: User stop timer
+    Given User on homepage
+    Then User choose timesheet
+    And User click resume timer
+    And User click button complete
+
+    @delete @timesheet
+    Scenario: User delete Timesheet
+    Given User on homepage
+    Then User choose timesheet
+    And User click button delete
+    And User click button Yes
+    Then Timesheet success get delete
+
+    @submit @timesheet
+    Scenario: User submit timesheet
+    Given User on homepage
+    Then User choose timesheet
+    And User click button Submit

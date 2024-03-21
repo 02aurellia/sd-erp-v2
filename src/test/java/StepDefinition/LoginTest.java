@@ -31,7 +31,7 @@ public class LoginTest extends env{
     }
 
     @Then("User go to dashboard page")
-    public void user_go_to_dashboard_page() {
+    public void user_go_to_dashboard_page() throws InterruptedException {
         LoginPage login = new LoginPage(driver);
         login.verifyDashboard();
     }

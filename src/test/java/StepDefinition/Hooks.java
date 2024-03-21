@@ -34,7 +34,7 @@ public class Hooks extends env {
 
     @After
     public void browserTeardown() throws InterruptedException{
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         driver.quit();
     }
 

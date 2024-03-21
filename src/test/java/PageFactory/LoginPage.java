@@ -1,5 +1,6 @@
 package PageFactory;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -49,13 +50,18 @@ public class LoginPage {
         btnLogin.click();
     }
 
-    public void verifyDashboard(){
-        verifDashboard.isDisplayed();
+    public void verifyDashboard() throws InterruptedException{
+        Thread.sleep(2000);
+        String ActualTitle = verifDashboard.getText();
+        Assert.assertEquals("Home", ActualTitle);
         System.out.println("Berhasil Login");
     }
 
     public void verifyAlert(){
-        alertFailed.isDisplayed();
+        // alertFailed.isDisplayed();
+        String ActualTitle = alertFailed.getText();
+        Assert.assertEquals("Invalid Login. Try again.", ActualTitle);
+        System.out.println("Gagal Login");
     }
 
 }
