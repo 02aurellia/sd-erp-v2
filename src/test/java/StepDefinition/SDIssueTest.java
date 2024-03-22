@@ -87,4 +87,38 @@ public class SDIssueTest extends env {
         SDIssuePage issue = new SDIssuePage(driver);
         issue.verifSuccess();
     }
+
+    @And("User search issue by subject")
+    public void user_search_issue_by_subject() throws InterruptedException {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.search("Testing Issue");
+    }
+    @Then("User get the result")
+    public void user_get_the_result() {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.verifyResult();
+    }
+
+    @And("User search invalid issue by subject")
+    public void user_search_invalid_issue_by_subject() throws InterruptedException {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.search("Testinggggggg");
+    }
+    @Then("User get no result")
+    public void user_get_no_result() {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.verifyResultInvalid();
+    }
+
+    @And("User click assign to me")
+    public void user_click_assign_to_me() throws InterruptedException {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.assignToMe();
+    }
+    @Then("User get result")
+    public void user_get_result() {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.verifyAssign();
+    }
+
 }

@@ -54,7 +54,7 @@ public class SDIssuePage {
     @FindBy(xpath = "//ul[@id='awesomplete_list_15']//li")
     List<WebElement> listPriority;
 
-    @FindBy(xpath = "//a[@title='Testing Issue 5844']")
+    @FindBy(xpath = "//a[@title='Testing Issue 4593']")
     WebElement issue;
 
     @FindBy(xpath = "//div[@class='ql-editor']")
@@ -62,6 +62,21 @@ public class SDIssuePage {
 
     @FindBy(xpath = "//div[contains(text(),'Saved')]")
     WebElement MsgSuccess;
+
+    @FindBy(xpath = "//input[@placeholder='ID']")
+    WebElement inputSearch;
+
+    @FindBy(xpath = "//p[normalize-space()='No SD Issue found']")
+    WebElement resultInvalidSearch;
+
+    @FindBy(xpath = "//a[@data-label='Assigned To']")
+    WebElement btnAssignTo;
+
+    @FindBy(xpath = "//span[normalize-space()='Me']")
+    WebElement btnMe;
+
+    @FindBy(xpath = "(//a[@data-filter='contact,=,Aurellia Az Zahra Ugan'][normalize-space()='Aurellia Az Zahra Ugan'])[1]")
+    WebElement checkContact;
 
     public SDIssuePage(WebDriver driver) {
 		this.driver = driver;
@@ -172,4 +187,29 @@ public class SDIssuePage {
         MsgSuccess.isDisplayed();
     }
 
+    public void search(String search) throws InterruptedException{
+        inputSearch.sendKeys(search);
+        Thread.sleep(2000);
+    }
+
+    public void verifyResult(){
+        String ActualResult = issue.getText();
+        Assert.assertTrue(ActualResult.contains("Testing Issue"));
+    }
+
+    public void verifyResultInvalid(){
+        String ActualResult = resultInvalidSearch.getText();
+        Assert.assertEquals("No SD Issue found", ActualResult);
+    }
+
+    public void assignToMe() throws InterruptedException{
+        btnAssignTo.click();
+        Thread.sleep(1000);
+        btnMe.click();
+    }
+
+    public void verifyAssign(){
+        String ActualResult = checkContact.getText();
+        Assert.assertTrue(ActualResult.contains("Aurellia"));
+    }
 }
