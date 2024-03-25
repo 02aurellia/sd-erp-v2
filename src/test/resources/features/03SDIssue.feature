@@ -54,3 +54,30 @@ Feature: CRUD SD Issue
     And User go to SD Issues page
     And User click assign to me
     Then User get result
+
+    @issue @status
+    Scenario: User filter status
+    Given User in homepage
+    And User go to Projects page
+    And User go to SD Issues page
+    And User choose status
+    Then User get result with status
+
+    @issue @change @status
+    Scenario: User change status to closed
+    Given User in homepage
+    And User go to Projects page
+    And User go to SD Issues page
+    And User choose Status and Issue
+    And User change status
+    And User click button Save
+    Then Status changed
+
+    @issue @tags
+    Scenario: User add tags
+    Given User in list issue page
+    Then User select issue
+    And User click button actions
+    And User choose add tags
+    And User add tags
+    Then User click button Add

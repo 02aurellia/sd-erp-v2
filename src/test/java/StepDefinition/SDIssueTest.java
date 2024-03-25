@@ -105,7 +105,7 @@ public class SDIssueTest extends env {
         issue.search("Testinggggggg");
     }
     @Then("User get no result")
-    public void user_get_no_result() {
+    public void user_get_no_result() throws InterruptedException {
         SDIssuePage issue = new SDIssuePage(driver);
         issue.verifyResultInvalid();
     }
@@ -121,4 +121,65 @@ public class SDIssueTest extends env {
         issue.verifyAssign();
     }
 
+    @And("User choose status")
+    public void user_choose_status() {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.chooseStatus();
+    }
+    @Then("User get result with status")
+    public void user_get_result_with_status() {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.verifyStatus();
+    }
+
+    @And("User choose Status and Issue")
+    public void user_choose_status_and_issue() throws InterruptedException {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.chooseStatusIssue();
+    }
+    @And("User change status")
+    public void user_change_status() {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.changeStatus();
+    }
+    @Then("Status changed")
+    public void status_changed() throws InterruptedException {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.verifSuccess();
+    }
+
+    @Given("User in list issue page")
+    public void user_in_list_issue_page() throws InterruptedException {
+        driver.get("http://192.168.101.88:3033/app/sd-issue"); //endpoint url sd issue
+        driver.findElement(By.xpath("(//a[contains(text(),'Login')])[2]")).click();
+        LoginPage login = new LoginPage(driver);
+        login.verifyLoginPage();
+        login.inputCredentials("aurel@falahtech.co.id", "Falah0918");
+        login.clickBtnLogin();
+    }
+    @Then("User select issue")
+    public void user_select_issue() throws InterruptedException {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.selectIssue();
+    }
+    @Then("User click button actions")
+    public void user_click_button_actions() {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.clickActions();
+    }
+    @Then("User choose add tags")
+    public void user_choose_add_tags() throws InterruptedException {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.clickAddTags();
+    }
+    @Then("User add tags")
+    public void user_add_tags() throws InterruptedException {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.addTags();
+    }
+    @Then("User click button Add")
+    public void user_click_button_add() {
+        SDIssuePage issue = new SDIssuePage(driver);
+        issue.clickBtnAddTags();
+    }
 }

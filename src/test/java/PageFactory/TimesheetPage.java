@@ -328,7 +328,13 @@ public class TimesheetPage {
         btnComplete.click();
     }
 
+    public void closeTimer() throws InterruptedException{
+        Thread.sleep(2000);
+        btnCloseMessage.click();
+    }
+
     public void clickBtnSubmit() throws InterruptedException{
+        Thread.sleep(1000);
         btnSubmit.click();
         Thread.sleep(1000);
         btnConfirmYes.click();

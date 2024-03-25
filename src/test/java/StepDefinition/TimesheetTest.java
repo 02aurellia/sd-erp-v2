@@ -126,6 +126,9 @@ public class TimesheetTest extends env {
     @Then("User click button Submit")
     public void user_click_button_submit() throws InterruptedException {
         TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.clickBtnTimer();
+        timesheet.clickBtnComplete();
+        timesheet.closeTimer();
         timesheet.clickBtnSubmit();
         timesheet.successSubmit();
     }
