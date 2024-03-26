@@ -48,3 +48,27 @@ Feature: CRUD Timesheet
     Given User on homepage
     Then User choose timesheet
     And User click button Submit
+
+    @filter @timesheet @positive
+    Scenario: User filter timesheet - with result
+    Given User on homepage
+    Then User click button view list
+    And User see the list
+    Then User choose status timesheet
+    And User get list timesheet with status
+
+    @filter @timesheet @negative
+    Scenario: User filter timesheet - no result
+    Given User on homepage
+    Then User click button view list
+    And User see the list
+    Then User choose status timesheet no result 
+    And User get result not found
+
+    @search @timesheet
+    Scenario: User search timesheet by date
+    Given User on homepage
+    Then User click button view list
+    And User see the list
+    Then User pick date
+    And User get result list timesheet with date

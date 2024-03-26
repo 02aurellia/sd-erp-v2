@@ -89,7 +89,7 @@ public class SDIssuePage {
     @FindBy(xpath = "//select[@class='input-with-feedback form-control ellipsis']")
     WebElement changeStatus;
 
-    @FindBy(xpath = "//*[@id=\"page-List/SD Issue/List\"]/div[2]/div[2]/div/div[3]/div[2]/div[1]/div[2]/div[1]/div[4]/div/div[1]/div[1]/span[1]/input")
+    @FindBy(xpath = "//*[@id=\"page-List/SD Issue/List\"]/div[2]/div[2]/div/div[3]/div[2]/div[1]/div[2]/div[1]/div[2]/div/div[1]/div[1]/span[1]/input")
     WebElement checklistIssue;
 
     @FindBy(xpath = "//div[@class='actions-btn-group']//button[@type='button']")
@@ -287,7 +287,7 @@ public class SDIssuePage {
     }
 
     public void addTags() throws InterruptedException{
-        inputTags.sendKeys("back"); //Quality Assurance Team, Backend Programmer, Document & UX Engineer, Frontend Programmer, Unity Level Design, Unity Programmer
+        inputTags.sendKeys("quality"); //Quality Assurance Team, Backend Programmer, Document & UX Engineer, Frontend Programmer, Unity Level Design, Unity Programmer
         inputTags.sendKeys(Keys.ENTER);
         forClick.click();
         Thread.sleep(2000);

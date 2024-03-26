@@ -2,6 +2,7 @@ package PageFactory;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class TimesheetPage {
     WebDriver driver;
@@ -107,6 +109,14 @@ public class TimesheetPage {
     @FindBy(xpath = "//span[@class='indicator-pill whitespace-nowrap blue']")
     WebElement verifySubmit;
 
+    @FindBy(xpath = "//div[@id='page-List/SD Timesheets/List']//select[@placeholder='Status']")
+    WebElement status;
+
+    @FindBy(xpath = "//p[normalize-space()='No SD Timesheets found']")
+    WebElement notFound;
+
+    @FindBy(xpath = "//input[@placeholder='Start Date']")
+    WebElement Inputdate;
     
     public TimesheetPage(WebDriver driver) {
 		this.driver = driver;
@@ -343,5 +353,33 @@ public class TimesheetPage {
 
     public void successSubmit(){
         verifySubmit.isDisplayed();
+    }
+
+    public void chooseStat(String stat){
+        Select select_status = new Select(status);
+        select_status.selectByValue(stat);
+    }
+
+    public void verifyStat() throws InterruptedException{
+        Thread.sleep(2000);
+        String ActualResult = status.getText();
+        Assert.assertTrue(ActualResult.contains("Submitted"));
+    }
+
+    public void verifyNotFound() throws InterruptedException{
+        Thread.sleep(2000);
+        String ActualResult = notFound.getText();
+        System.out.println(ActualResult);
+        Assert.assertTrue(ActualResult.contains("No SD Timesheets found"));
+    }
+
+    public void pickDate() throws InterruptedException{
+        Thread.sleep(2000);
+        Inputdate.clear();
+        Inputdate.sendKeys("25-03-2024");
+        Inputdate.sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
+        String date = Inputdate.getText();
+        System.out.println(date);
     }
 }

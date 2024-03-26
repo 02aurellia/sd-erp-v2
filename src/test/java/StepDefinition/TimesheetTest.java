@@ -132,4 +132,38 @@ public class TimesheetTest extends env {
         timesheet.clickBtnSubmit();
         timesheet.successSubmit();
     }
+
+    @Then("User choose status timesheet")
+    public void user_choose_status_timesheet() {
+        TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.chooseStat("Submitted");
+    }
+
+    @Then("User choose status timesheet no result")
+    public void user_choose_status_timesheet_no_result() {
+        TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.chooseStat("Cancelled");
+    }
+
+    @Then("User get list timesheet with status")
+    public void user_get_list_timesheet_with_status() throws InterruptedException {
+        TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.verifyStat();
+    }
+
+    @Then("User get result not found")
+    public void user_get_result_not_found() throws InterruptedException {
+        TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.verifyNotFound();
+    }
+
+    @Then("User pick date")
+    public void user_pick_date() throws InterruptedException {
+        TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.pickDate();
+    }
+    @Then("User get result list timesheet with date")
+    public void user_get_result_list_timesheet_with_date() {
+        
+    }
 }
