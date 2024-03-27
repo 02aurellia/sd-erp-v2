@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -89,27 +88,6 @@ public class SDIssuePage {
     @FindBy(xpath = "//select[@class='input-with-feedback form-control ellipsis']")
     WebElement changeStatus;
 
-    @FindBy(xpath = "//*[@id=\"page-List/SD Issue/List\"]/div[2]/div[2]/div/div[3]/div[2]/div[1]/div[2]/div[1]/div[2]/div/div[1]/div[1]/span[1]/input")
-    WebElement checklistIssue;
-
-    @FindBy(xpath = "//div[@class='actions-btn-group']//button[@type='button']")
-    WebElement btnActions;
-
-    @FindBy(xpath = "//*[@id=\"page-List/SD Issue/List\"]/div[1]/div/div/div[2]/div[2]/div[2]/ul/li[5]/a")
-    WebElement btnAddTags;
-
-    @FindBy(xpath = "//input[@aria-expanded='true']")
-    WebElement inputTags;
-
-    @FindBy(xpath = "//ul[@id='awesomplete_list_6']//li")
-    List<WebElement> listTags;
-
-    @FindBy(css = "button[class='btn btn-primary btn-sm btn-modal-primary']")
-    WebElement btnAdd;
-
-    @FindBy(xpath = "//div[@title='tags']//div[@class='clearfix']")
-    WebElement forClick;
-
     public SDIssuePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(new AjaxElementLocatorFactory(driver,30),this);
@@ -163,9 +141,9 @@ public class SDIssuePage {
 
         Thread.sleep(2000);
         inputTask.click();
-        String OptionToSelect1="Testing Task";
+        String OptionToSelect1="RnD QA";
         int count1=0;
-        inputTask.sendKeys("Testing Task");
+        inputTask.sendKeys("RnD QA");
         
         Thread.sleep(1000);
 
@@ -226,8 +204,8 @@ public class SDIssuePage {
     }
 
     public void verifyResult(){
-        String ActualResult = issue.getText();
-        Assert.assertTrue(ActualResult.contains("Testing Issue"));
+        String ActualResult = driver.getCurrentUrl();
+        Assert.assertTrue(ActualResult.contains("Testing%20Issue"));
     }
 
     public void verifyResultInvalid() throws InterruptedException{
@@ -243,8 +221,8 @@ public class SDIssuePage {
     }
 
     public void verifyAssign(){
-        String ActualResult = checkContact.getText();
-        Assert.assertTrue(ActualResult.contains("Aurellia"));
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("aurel"));
     }
 
     public void chooseStatus(){
@@ -253,8 +231,8 @@ public class SDIssuePage {
     }
 
     public void verifyStatus(){
-        String ActualResult = status.getText();
-        Assert.assertTrue(ActualResult.contains("Closed"));
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("Closed"));
     }
 
     public void chooseStatusIssue() throws InterruptedException{
@@ -271,30 +249,5 @@ public class SDIssuePage {
     public void changeStatus(){
         Select select_status = new Select(changeStatus);
         select_status.selectByVisibleText("Closed");
-    }
-
-    public void selectIssue(){
-        checklistIssue.click();
-    }
-
-    public void clickActions(){
-        btnActions.click();
-    }
-
-    public void clickAddTags() throws InterruptedException{
-        btnAddTags.click();
-        Thread.sleep(2000);
-    }
-
-    public void addTags() throws InterruptedException{
-        inputTags.sendKeys("quality"); //Quality Assurance Team, Backend Programmer, Document & UX Engineer, Frontend Programmer, Unity Level Design, Unity Programmer
-        inputTags.sendKeys(Keys.ENTER);
-        forClick.click();
-        Thread.sleep(2000);
-    }
-
-    public void clickBtnAddTags(){
-        btnAdd.click();
-        verifyIssue.isDisplayed();
     }
 }

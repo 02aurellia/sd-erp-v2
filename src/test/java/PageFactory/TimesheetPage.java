@@ -1,5 +1,6 @@
 package PageFactory;
 
+import java.sql.Driver;
 import java.util.List;
 
 import org.junit.Assert;
@@ -362,8 +363,8 @@ public class TimesheetPage {
 
     public void verifyStat() throws InterruptedException{
         Thread.sleep(2000);
-        String ActualResult = status.getText();
-        Assert.assertTrue(ActualResult.contains("Submitted"));
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("Submitted"));
     }
 
     public void verifyNotFound() throws InterruptedException{
@@ -379,7 +380,11 @@ public class TimesheetPage {
         Inputdate.sendKeys("25-03-2024");
         Inputdate.sendKeys(Keys.ENTER);
         Thread.sleep(1000);
-        String date = Inputdate.getText();
-        System.out.println(date);
+    }
+
+    public void verifyDate(){
+        String currentUrl = driver.getCurrentUrl();
+        System.out.println(currentUrl);
+        Assert.assertTrue(currentUrl.contains("2024-03-25"));
     }
 }

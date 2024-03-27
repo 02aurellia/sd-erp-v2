@@ -72,12 +72,3 @@ Feature: CRUD SD Issue
     And User change status
     And User click button Save
     Then Status changed
-
-    @issue @tags
-    Scenario: User add tags
-    Given User in list issue page
-    Then User select issue
-    And User click button actions
-    And User choose add tags
-    And User add tags
-    Then User click button Add

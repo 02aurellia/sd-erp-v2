@@ -164,6 +164,7 @@ public class TimesheetTest extends env {
     }
     @Then("User get result list timesheet with date")
     public void user_get_result_list_timesheet_with_date() {
-        
+        TimesheetPage timesheet = new TimesheetPage(driver);
+        timesheet.verifyDate();
     }
 }
